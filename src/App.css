@@ -11,6 +11,9 @@
   background-color: var(--app-background-color);
   min-height: 100vh;
 }
+.btn-text {
+  color: var(--black-color);
+}
 /* Auth page css starts here */
 
 .login-landing-wrapper {
@@ -299,3 +302,27 @@ a {
 }
 /* user profile css ends here */
  
+/* Home css starts here */
+.user-details-wrapper {
+  display : flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 0;
+}
+.feedcard-wrapper {
+  max-width: 30rem;
+  margin: auto;
+}
+.feed-btn-icon {
+  padding: 0 0.5rem 0 0;
+}
+.selected {
+  color: var(--app-color-main);
+}
+.upload-icon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+input[type = "file"]{
+  
+}
