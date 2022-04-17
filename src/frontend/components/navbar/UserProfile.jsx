@@ -15,8 +15,8 @@ const UserProfile = ({setProfileDisplay}) => {
   return (
     <div className = "profile-card-wrapper">
         <p>Hello <strong>{userProfileData.firstName}</strong></p>
-        <p >My Habits</p>
-        <p>Contact Us</p>
+        <p >My Profile</p>
+        <p>Settings</p>
         <button className="btn outlined" onClick = {logoutUser}>Logout</button>
         
     </div>

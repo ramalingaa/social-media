@@ -10,19 +10,21 @@ const Navbar = () => {
     setProfileDisplay((prev) => !prev)
   }
   return (
-    <nav className="navbar">
-    <Link to = "/" className="navbar-logo">
-         <h2>One Mile</h2>
-    </Link>
-     {jwtToken && 
-     <div className = "page-links">
+    <main className = "navbar-main-wrapper">
+      <nav className="navbar">
+      <Link to = "/" className="navbar-logo">
+          <h2>One Mile</h2>
+      </Link>
+      {jwtToken && 
+      <div className = "page-links">
+        
+        <i className="far fa-user nav-icon" onClick = {toggleProfileCard}></i>
+      </div>
+      }
+        {profileDisplay && <UserProfile setProfileDisplay = {setProfileDisplay}/>}
       
-       <i className="far fa-user nav-icon" onClick = {toggleProfileCard}></i>
-     </div>
-     }
-       {profileDisplay && <UserProfile setProfileDisplay = {setProfileDisplay}/>}
-     
- </nav>
+      </nav>
+    </main>
   )
 }
 

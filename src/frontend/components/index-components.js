@@ -4,5 +4,8 @@ import Signup from './authentication/Signup';
 import UserProfile from "./navbar/UserProfile"
 import Navbar from "./navbar/Navbar"
 import Home from "./home/Home"
+import FeedCard from "./home/FeedCard"
+import UploadPost from "./home/UploadPost"
+import UserProfileCard from "./home/UserProfileCard"
 
-export { ForgotPassword, Login, Signup, UserProfile, Navbar, Home}
+export { ForgotPassword, Login, Signup, UserProfile, Navbar, Home, FeedCard, UploadPost, UserProfileCard}

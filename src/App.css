@@ -2,6 +2,7 @@
   --app-color-main:#1877f2;
   --app-background-color: #f0f2f5;
   --box-shadow-color: rgba(0, 0, 0, 0.2);
+  --div-border-color: rgb(218, 216, 216);
 }
 .primary {
   background-color: var(--app-color-main);
@@ -10,6 +11,9 @@
 .App {
   background-color: var(--app-background-color);
   min-height: 100vh;
+}
+.btn-text {
+  color: var(--black-color);
 }
 /* Auth page css starts here */
 
@@ -151,15 +155,22 @@ a {
   font-size: 0.8rem;
 }
 
+.navbar-main-wrapper {
+  background-color: var(--white-color);
+  border-bottom: 1px solid var(--div-border-color);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 .navbar {
   width: 90%;
   margin: auto;
-  background-color: transparent;
   align-items: baseline;
   position: relative;
   display: flex;
   justify-content: space-between;
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
 }
 
 .navbar-logo {
@@ -284,7 +295,7 @@ a {
 /* user profile css start here */
 .profile-card-wrapper {
   width: 15rem;
-  background-color:var(--app-background-color);
+  background-color:var(--white-color);
   padding: 1rem;
   position:absolute;
   right: 0%;
@@ -293,9 +304,88 @@ a {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border: 1px solid var(--div-background-color);
+  border: 1px solid var(--div-border-color);
   color: var(--black-color);
+  text-transform: capitalize;
 
 }
 /* user profile css ends here */
  
+/* Home css starts here */
+.home-main-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+.user-details-wrapper {
+  display : flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+}
+.feedcard-wrapper {
+  max-width: 35rem;
+  margin: 1rem;
+  background-color: var(--white-color);
+  padding: 1rem 0;
+  border-radius: 1rem;
+  border:1px solid var(--div-border-color)
+}
+.feedcard-wrapper >p {
+  padding: 1rem;
+}
+.feed-btn-icon {
+  padding: 0 0.5rem 0 0;
+}
+.selected {
+  color: var(--app-color-main);
+}
+.upload-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--white-color);
+  color: #1877f2;
+  padding: 0.5rem 0.5rem 0 0.2rem;
+
+}
+input[type = "file"]{
+  display: none;
+}
+.postbtn-label-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.text-area {
+  border: 0;
+  margin: 0;
+  resize: none;
+}
+.text-area:focus {
+  outline: 0;
+}
+.upload-post-wrapper {
+  background-color: var(--white-color);
+  padding: 1rem;
+}
+.user-profile-cardH {
+  background-color: var(--white-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0 1rem 1rem;
+  border-radius: 1rem;
+  position: sticky;
+  top: 4.5rem;
+}
+.user-name-badge {
+  text-align: center
+}
+.profile-count {
+  color: var(--app-color-main);
+}
+.username {
+  text-transform: capitalize;
+  padding: 0.5rem 0 0 0;
+
+}
