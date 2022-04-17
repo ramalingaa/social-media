@@ -10,7 +10,7 @@ const FeedCard = ({ pInfo}) => {
     useEffect(() =>{
         const user = usersData.find((user) => (user.firstName + user.lastName) === pInfo.userName)
         setPostUploader(() => user)
-        const likedUser = pInfo.likes.likedBy.find((likedUser) => likedUser.firstName + likedUser.lastName === userProfileData)
+        const likedUser = pInfo.likes.likedBy.find((likedUser) => likedUser.firstName + likedUser.lastName === userProfileData.firstName + userProfileData.lastName)
         if(likedUser){
             setLikedDisplay(() => true)
         }

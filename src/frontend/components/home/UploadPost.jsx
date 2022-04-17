@@ -5,8 +5,8 @@ import { useAuth, usePosts } from "../../context/index-context"
 const UploadPost = () => {
     const { jwtToken, userProfileData } = useAuth()
     const { dispatch } = usePosts()
-    const [newPostsData, setNewPostsData] = useState({content:"", image:"", userName:userProfileData})
-
+    const [newPostsData, setNewPostsData] = useState({content:"", image:"", userName:userProfileData.firstName + userProfileData.lastName})
+ 
     const uploadImage = (e) => {
         const files = e.target.files
         let reader = new FileReader()
@@ -21,20 +21,21 @@ const UploadPost = () => {
     }
     const postNewPostData = async() => {
         try {
-            console.log(newPostsData)
             const response = await axios.post("/api/posts",{postData:newPostsData},{headers:{authorization:jwtToken}})
             dispatch({type:"SET_POSTS_DATA", payload:response.data.posts})
+            setNewPostsData(() =>({content:"", image:"", userName:userProfileData.firstName + userProfileData.lastName}))
         }catch(e){
             console.log(e)
         }
     }
     return (
-    <div className = "feedcard-wrapper">
-        <textarea rows = "10" cols = "20" placeholder="start posting something...." onChange = {updateContent}></textarea>
-        <div>
+    <div className = "feedcard-wrapper upload-post-wrapper">
+        <textarea rows = "10" cols = "20" placeholder="Start a post..." onChange = {updateContent} className="text-area" value = {newPostsData.content}></textarea>
+        <div className = "postbtn-label-wrapper">
             <label>
                 <input type = "file" onChange = {uploadImage} accept = ".jpg, .jpeg, .png, .gif"/>
-                <i className="fas fa-camera upload-icon"></i>
+                <i className="fas fa-camera-retro upload-icon"></i>
+                Photo
             </label>
             <button className = "btn primary" onClick = {postNewPostData}>Post</button>
         </div>
