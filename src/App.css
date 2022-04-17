@@ -387,5 +387,7 @@ input[type = "file"]{
 .username {
   text-transform: capitalize;
   padding: 0.5rem 0 0 0;
-
+}
+.feedcard-btn-wrapper {
+  border-top: 1px solid var(--div-border-color);
 }

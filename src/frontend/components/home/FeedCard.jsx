@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { usePosts, useAuth } from "../../context/index-context"
-import axios  from "axios"
+import { likeHandlerFunction } from './likeHandlerFunction'
 const FeedCard = ({ pInfo}) => {
     const [postUploader, setPostUploader] = useState({badge:""})
     const { postsState, dispatch } = usePosts()
@@ -18,26 +18,7 @@ const FeedCard = ({ pInfo}) => {
             setLikedDisplay(() => false)
         }
     },[pInfo])
-    const likeHandler = async() => {
-        if(!likedDisplay){
-            try {
-                const response = await axios.post(`/api/posts/like/${pInfo._id}`, {}, {headers:{authorization:jwtToken}})
-                dispatch({type:"SET_POSTS_DATA", payload:response.data.posts})
-    
-            }catch (e) {
-                console.log(e)
-            }
-        }
-        else {
-            try {
-                const response = await axios.post(`/api/posts/dislike/${pInfo._id}`, {}, {headers:{authorization:jwtToken}})
-                dispatch({type:"SET_POSTS_DATA", payload:response.data.posts})
-    
-            }catch (e) {
-                console.log(e)
-            }
-        }
-    }
+    const likeHandler = likeHandlerFunction(likedDisplay, pInfo, jwtToken, dispatch)
   return (
     <div className = "feedcard-wrapper">
         <div className="user-details-wrapper">
@@ -46,7 +27,7 @@ const FeedCard = ({ pInfo}) => {
         </div>
         <img src={pInfo.image} alt = "feed" className="res-img" />
         <p>{pInfo.content}</p>
-        <div>
+        <div className = "feedcard-btn-wrapper">
             <button className= {`btn btn-text ${likedDisplay && "selected"}`} onClick = { likeHandler }><i className="far fa-thumbs-up feed-btn-icon"></i>Like</button>
             <button className="btn btn-text"><i className="fas fa-comment-dots feed-btn-icon"></i>Comment</button>           
         </div>
@@ -55,3 +36,5 @@ const FeedCard = ({ pInfo}) => {
 }
 
 export default FeedCard
+
+

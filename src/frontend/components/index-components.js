@@ -7,5 +7,7 @@ import Home from "./home/Home"
 import FeedCard from "./home/FeedCard"
 import UploadPost from "./home/UploadPost"
 import UserProfileCard from "./home/UserProfileCard"
+import UserOwnPosts from "./userdetails/UserOwnPosts"
+import UserPostCard from "./userdetails/UserPostCard"
 
-export { ForgotPassword, Login, Signup, UserProfile, Navbar, Home, FeedCard, UploadPost, UserProfileCard}
+export { ForgotPassword, Login, Signup, UserProfile, Navbar, Home, FeedCard, UploadPost, UserProfileCard, UserOwnPosts, UserPostCard }
