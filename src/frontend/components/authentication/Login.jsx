@@ -19,11 +19,10 @@ const Login = () => {
             try {
             
                 const response = await axios.post("/api/auth/login",userData)
-                console.log(response)
                 if(response.status === 200){
-                    localStorage.setItem("ONE",JSON.stringify({"JWT_TOKEN_ONE":response.data.encodedToken, "USER_PROFILE_ONE":response.data.foundUser.firstName +" "+ response.data.foundUser.lastName}))
+                    localStorage.setItem("ONE",JSON.stringify({"JWT_TOKEN_ONE":response.data.encodedToken, "USER_PROFILE_ONE":response.data.foundUser}))
                     setJwtToken(() =>response.data.encodedToken)
-                    setUserProfileData(() =>response.data.foundUser.firstName +" "+ response.data.foundUser.lastName)
+                    setUserProfileData(() =>response.data.foundUser)
                     navigate("/")
                 } else {
                     throw new Error()
@@ -54,7 +53,6 @@ const Login = () => {
         try {
             const guestData = {email:"ramalinga.kalagotla@gmail.com", password:"123456"}
             const response = await axios.post("/api/auth/login",guestData)
-            console.log(response.data)
             localStorage.setItem("ONE",JSON.stringify({"JWT_TOKEN_ONE":response.data.encodedToken, "USER_PROFILE_ONE":response.data.foundUser}))
             setJwtToken(() =>response.data.encodedToken)
             setUserProfileData(() =>response.data.foundUser)

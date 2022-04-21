@@ -9,5 +9,6 @@ import UploadPost from "./home/UploadPost"
 import UserProfileCard from "./home/UserProfileCard"
 import UserOwnPosts from "./userdetails/UserOwnPosts"
 import UserPostCard from "./userdetails/UserPostCard"
+import EditPostCard from "./userdetails/EditPostCard"
 
-export { ForgotPassword, Login, Signup, UserProfile, Navbar, Home, FeedCard, UploadPost, UserProfileCard, UserOwnPosts, UserPostCard }
+export { ForgotPassword, Login, Signup, UserProfile, Navbar, Home, FeedCard, UploadPost, UserProfileCard, UserOwnPosts, UserPostCard, EditPostCard }

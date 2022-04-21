@@ -17,7 +17,7 @@ const UserOwnPosts = () => {
     </div>
     <div>
        {userPosts.map((post) =>{
-           return <UserPostCard post = {post}/>
+           return <UserPostCard post = {post} key = {post._id}/>
        })}
     </div>
     <div>
