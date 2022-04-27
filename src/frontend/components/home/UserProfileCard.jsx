@@ -19,20 +19,15 @@ const UserProfileCard = () => {
     <div className = "user-profile-cardH">
         <div className = "user-name-badge">
             <img src = {userProfileData.badge} alt = "profile badge" className = "avatar" />
-            <p className = "username">{userProfileData.firstName + " " + userProfileData.lastName}</p>
+            <div>
+                <NavLink className = "username" to = "/myprofile">{userProfileData.firstName + " " + userProfileData.lastName}</NavLink>
+            </div>
+
         </div>
         <NavLink className ={({isActive}) => isActive ?  "postbtn-label-wrapper activeLink": "postbtn-label-wrapper"} to = "/myposts">
             <p>My Posts</p>
             <p className = "profile-count">{userPosts}</p>
         </NavLink>
-        <div className = "postbtn-label-wrapper">
-            <p>Followers</p>
-            <p className = "profile-count">{userProfileData.followers.length}</p>
-        </div>
-        <div className = "postbtn-label-wrapper">
-            <p>Following</p>
-            <p className = "profile-count">{userProfileData.following.length}</p>
-        </div>
         <div className = "postbtn-label-wrapper">
             <p>Liked</p>
             <p className = "profile-count">{likeCounter}</p>

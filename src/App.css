@@ -458,3 +458,36 @@ input[type = "file"]{
   text-align: center;
   height:20rem
 }
+/* user profile page css starts here */
+.user-name-hor {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  position: static;
+}
+.profile-user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.post-count {
+  gap: 0.3rem;
+}
+.user-tab-wrapper {
+  justify-content:space-around;
+}
+.userpost-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+}
+/* followers card css starts here */
+.followers-card {
+  gap: 0.7rem;
+  align-items:center;
+}
+.follower-card-name {
+  text-transform: capitalize;
+  font-weight: bold;
+}

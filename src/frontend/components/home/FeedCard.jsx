@@ -47,6 +47,7 @@ const FeedCard = ({ pInfo}) => {
         if(bookmarkDisplay){
             try {
                 const response = await axios.post(`/api/users/remove-bookmark/${pInfo._id}`,{}, { headers: { authorization: jwtToken } })
+                
                 dispatch({ type: "SET_BOOKMARK_DATA", payload: response.data.bookmarks });
             }
             catch (e) {
@@ -56,6 +57,7 @@ const FeedCard = ({ pInfo}) => {
         else {
             try {
                 const response = await axios.post(`/api/users/bookmark/${pInfo._id}`,{}, { headers: { authorization: jwtToken } })
+                console.log(response.data.bookmarks)
                 dispatch({ type: "SET_BOOKMARK_DATA", payload: response.data.bookmarks });
             }
             catch (e) {
@@ -69,6 +71,7 @@ const FeedCard = ({ pInfo}) => {
             try {
                 const response = await axios.post(`/api/users/unfollow/${postUploader._id}`,{}, { headers: { authorization: jwtToken } })
                 setUserProfileData(() => response.data.user)
+
             }
             catch (e) {
                 console.log(e)
@@ -78,6 +81,7 @@ const FeedCard = ({ pInfo}) => {
             try {
                 const response = await axios.post(`/api/users/follow/${postUploader._id}`,{}, { headers: { authorization: jwtToken } })
                 setUserProfileData(() => response.data.user)
+                console.log(response.data)
             }
             catch (e) {
                 console.log(e)

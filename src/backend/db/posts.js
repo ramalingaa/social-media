@@ -15,6 +15,7 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    comments:[],
     image:"https://scx2.b-cdn.net/gfx/news/hires/2022/ancient-trees-deemed-v.jpg",
     video:"",
     userName: "adarshbalika",
