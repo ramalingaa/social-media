@@ -10,14 +10,13 @@ const PostsProvider = ({children}) => {
 
     const [postsState, dispatch] = useReducer(postsReducer, {postsData:[], usersData:[], bookmarksData:[]})
     const { jwtToken } = useAuth()
-
     useEffect(() => {
         if(jwtToken){
             getPosts(dispatch);
             getUsers(dispatch)
             getBooksmarks(dispatch, jwtToken)
         }
-    },[])
+    },[jwtToken])
     return (
         <PostsContext.Provider value = {{ postsState, dispatch }}>
             {children}
