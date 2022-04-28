@@ -81,7 +81,6 @@ const FeedCard = ({ pInfo}) => {
             try {
                 const response = await axios.post(`/api/users/follow/${postUploader._id}`,{}, { headers: { authorization: jwtToken } })
                 setUserProfileData(() => response.data.user)
-                console.log(response.data)
             }
             catch (e) {
                 console.log(e)
