@@ -1,6 +1,7 @@
 import { Server, Model, RestSerializer } from "miragejs";
 import { posts } from "./backend/db/posts";
 import { users } from "./backend/db/users";
+
 import {
   loginHandler,
   signupHandler,
@@ -89,4 +90,5 @@ export function makeServer({ environment = "development" } = {}) {
       );
     },
   });
+ 
 }

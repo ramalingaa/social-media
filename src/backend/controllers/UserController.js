@@ -107,7 +107,6 @@ export const getBookmarkPostsHandler = function (schema, request) {
 
 export const bookmarkPostHandler = function (schema, request) {
   const { postId } = request.params;
-  const post = schema.posts.findBy({ _id: postId }).attrs;
   const user = requiresAuth.call(this, request);
   try {
     if (!user) {
@@ -131,7 +130,7 @@ export const bookmarkPostHandler = function (schema, request) {
         { errors: ["This Post is already bookmarked"] }
       );
     }
-    user.bookmarks.push(post);
+    user.bookmarks.push(postId);
     this.db.users.update(
       { _id: user._id },
       { ...user, updatedAt: formatDate() }
@@ -200,6 +199,7 @@ export const removePostFromBookmarkHandler = function (schema, request) {
  * */
 
 export const followUserHandler = function (schema, request) {
+  
   const user = requiresAuth.call(this, request);
   const { followUserId } = request.params;
   const followUser = schema.users.findBy({ _id: followUserId }).attrs;
@@ -239,6 +239,7 @@ export const followUserHandler = function (schema, request) {
       { _id: followUser._id },
       { ...updatedFollowUser, updatedAt: formatDate() }
     );
+    console.log(user, followUser)
     return new Response(
       200,
       {},

@@ -7,5 +7,15 @@ import Home from "./home/Home"
 import FeedCard from "./home/FeedCard"
 import UploadPost from "./home/UploadPost"
 import UserProfileCard from "./home/UserProfileCard"
+import UserOwnPosts from "./userdetails/UserOwnPosts"
+import UserPostCard from "./userdetails/UserPostCard"
+import EditPostCard from "./userdetails/EditPostCard"
+import UserProfilePage from "./profilePages/UserProfilePage"
+import ProfileCarHor from "./profilePages/ProfileCarHor"
+import UserPostCardData from "./userdetails/UserPostCardData"
+import Followers from './followers/Followers';
+import FollowerCard from './followers/FollowerCard';
+import Following from "./following/Following"
+import FollowingCard from "./following/FollowingCard"
 
-export { ForgotPassword, Login, Signup, UserProfile, Navbar, Home, FeedCard, UploadPost, UserProfileCard}
+export { ForgotPassword, Login, Signup, UserProfile, Navbar, Home, FeedCard, UploadPost, UserProfileCard, UserOwnPosts, UserPostCard, EditPostCard, UserProfilePage, ProfileCarHor, UserPostCardData, Followers, FollowerCard, Following, FollowingCard }
