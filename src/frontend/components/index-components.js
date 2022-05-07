@@ -17,5 +17,10 @@ import Followers from './followers/Followers';
 import FollowerCard from './followers/FollowerCard';
 import Following from "./following/Following"
 import FollowingCard from "./following/FollowingCard"
-
-export { ForgotPassword, Login, Signup, UserProfile, Navbar, Home, FeedCard, UploadPost, UserProfileCard, UserOwnPosts, UserPostCard, EditPostCard, UserProfilePage, ProfileCarHor, UserPostCardData, Followers, FollowerCard, Following, FollowingCard }
+import PostProfilePage from "./postProfilePage/PostProfilePage"
+import PostProfileCard from "./postProfilePage/PostProfileCard"
+import UpdateProfileImage from "./profilePages/UpdateProfileImage"
+import UpdateBgImage from "./profilePages/UpdateBgImage"
+import UpdateBio from "./profilePages/UpdateBio"
+import UpdatePortFolio from "./profilePages/UpdatePortFolio"
+export { ForgotPassword, Login, Signup, UserProfile, Navbar, Home, FeedCard, UploadPost, UserProfileCard, UserOwnPosts, UserPostCard, EditPostCard, UserProfilePage, ProfileCarHor, UserPostCardData, Followers, FollowerCard, Following, FollowingCard, PostProfilePage, PostProfileCard, UpdateProfileImage, UpdateBgImage, UpdateBio, UpdatePortFolio }

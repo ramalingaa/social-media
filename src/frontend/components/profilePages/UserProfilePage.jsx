@@ -4,15 +4,9 @@ import { UserProfileCard, ProfileCarHor } from '../index-components'
 const UserProfilePage = () => {
   return (
 
-    <div className = "home-main-wrapper">
-        <div>
-            <UserProfileCard />
-        </div>
+    <div className = "profile-page-wrapper">
         <div>
             <ProfileCarHor />
-        </div>
-        <div>
-            
         </div>
     </div>
   )
