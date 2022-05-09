@@ -10,7 +10,7 @@ const PostProfileCard = () => {
     useEffect(() => {
         const filteredUserData = postsData.filter((post) => post.userName === params.userId)
         const postUploader = usersData.find((user) => user.username === params.userId)
-        setUserPosts(() => filteredUserData.length)
+        setUserPosts(() => filteredUserData)
         setPostOwner(() => postUploader)
 
 
@@ -24,7 +24,7 @@ const PostProfileCard = () => {
                 <p>@{postOwner?.username}</p>
                 <div className = "user-name-hor">
                     <div className = "user-name-hor post-count">
-                        <p className = "profile-count">{userPosts}</p>
+                        <p className = "profile-count">{userPosts.length}</p>
                         <p>Posts</p>
                     </div>
                     <div className = "user-name-hor post-count">
@@ -39,9 +39,9 @@ const PostProfileCard = () => {
             </div>
         </div>
         <div className = "user-profile-cardH user-name-hor user-tab-wrapper">
-            <NavLink to = "/myprofile/posts" className ={({isActive}) => isActive ?  "activeLink": ""}>Posts</NavLink>
-            <NavLink to = "/myprofile/followers" className ={({isActive}) => isActive ?  "activeLink": ""}>Followers</NavLink>
-            <NavLink to = "/myprofile/following" className ={({isActive}) => isActive ?  "activeLink": ""}>Following</NavLink>
+            <NavLink to = {`/${postOwner?.username}/posts`} className ={({isActive}) => isActive ?  "activeLink": ""}>Posts</NavLink>
+            <NavLink to = {`/${postOwner?.username}/followers`} className ={({isActive}) => isActive ?  "activeLink": ""}>Followers</NavLink>
+            <NavLink to = {`/${postOwner?.username}/following`} className ={({isActive}) => isActive ?  "activeLink": ""}>Following</NavLink>
         </div>
         <Outlet />
     </div>

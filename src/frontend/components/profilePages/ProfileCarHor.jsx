@@ -16,7 +16,6 @@ const ProfileCarHor = () => {
         setUserPosts(() => filteredUserData.length)
 
     },[postsData])
-    console.log(updatePhoto)
   return (
     <div >
         <div className = "user-profile-cardH user-name-hor user-name-ver">
@@ -47,7 +46,7 @@ const ProfileCarHor = () => {
                     </div>
                     <div className = "postbtn-label-wrapper">
                         <a href = {userProfileData.portFolioUrl} target="_blank" rel = "noopener noreferrer">Portfolio link: <span className = "portfolio-link">{userProfileData.portFolioUrl}</span></a>
-                        <button onClick = {() => setUpdatePortfolio(() => true)} className="update-profile-btn" title = "Update Bio"><i class="fa-solid fa-pen"></i></button>
+                        <button onClick = {() => setUpdatePortfolio(() => true)} className="update-profile-btn" title = "Update Portfolio"><i class="fa-solid fa-pen"></i></button>
                         { updatePortfolio && 
                         <div className = "edit-from-wrapper">
                             <UpdatePortFolio setUpdatePortfolio = {setUpdatePortfolio}/>

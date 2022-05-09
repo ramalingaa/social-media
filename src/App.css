@@ -472,6 +472,7 @@ label {
   display: flex;
   flex-direction: row;
   position: static;
+  gap: 1rem;
 }
 .user-name-ver {
   flex-direction: column;
@@ -541,7 +542,7 @@ label {
 .update-bg-btn {
   position: absolute;
   top: 6rem;
-  right: 27rem;
+  right: 10rem;
   border: 0;
   cursor: pointer;
   background-color: transparent;

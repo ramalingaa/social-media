@@ -11,7 +11,11 @@ function App() {
       { jwtToken && <Navbar />}
       <Routes>
         <Route path = "/" element = {jwtToken ? <Home /> : <Navigate to = "/login"/>} />
-        <Route path = "/:userId" element = {jwtToken ? <PostProfilePage /> : <Navigate to = "/login"/>}/>
+        <Route path = "/:userId" element = {jwtToken ? <PostProfilePage /> : <Navigate to = "/login"/>}>
+            <Route path = "posts" element = {jwtToken ? < UserPostCardData/> : < Navigate to = "/login"/>} />
+            <Route path = "followers" element = {jwtToken ? < Followers/> : < Navigate to = "/login"/>} />
+            <Route path = "following" element = {jwtToken ? < Following/> : < Navigate to = "/login"/>} />
+        </Route>
         <Route path = "/login" element = {jwtToken ? <Navigate to = "/" /> : <Login/>} />
         <Route path = "/signup" element = {jwtToken ? < Navigate to = "/"/> : <Signup/>} />
         <Route path = "/forgotpassword" element = {jwtToken ? < Navigate to = "/"/> : <ForgotPassword/>} />
