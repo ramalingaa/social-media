@@ -551,3 +551,9 @@ label {
 .portfolio-link {
   color: var(--app-color-main);
 }
+/* bookmarks css starts here */
+.zero-bookmarks-text {
+  font-size: 2rem;
+  width:70%;
+  margin: 2rem auto;
+}

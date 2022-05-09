@@ -95,7 +95,7 @@ const FeedCard = ({ pInfo}) => {
   return (
     <div className = "feedcard-wrapper">
         <div className = "postbtn-label-wrapper username-eclipse">
-            <Link to = {`/${pInfo.userName}`} className="user-details-wrapper">
+            <Link to = {`/${pInfo?.userName}`} className="user-details-wrapper">
                 <img src = {postUploader?.badge} alt = "profile badge" className="avatar"/>
                 <p className = "username">{pInfo.userName}</p>
             </Link>

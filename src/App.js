@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route, Navigate} from "react-router-dom"
-import { Login, ForgotPassword, Signup, Navbar, Home, UserOwnPosts, UserProfilePage, UserPostCardData, Followers, Following, PostProfilePage } from "./frontend/components/index-components"
+import { Login, ForgotPassword, Signup, Navbar, Home, UserOwnPosts, UserProfilePage, UserPostCardData, Followers, Following, PostProfilePage, BookmarkPage } from "./frontend/components/index-components"
 import { useAuth } from "./frontend/context/index-context"
 import MockAPI from "./MockAPI"
 
@@ -25,6 +25,7 @@ function App() {
             <Route path = "followers" element = {jwtToken ? < Followers/> : < Navigate to = "/login"/>} />
             <Route path = "following" element = {jwtToken ? < Following/> : < Navigate to = "/login"/>} />
         </Route>
+        <Route path = "/bookmarks" element = {jwtToken ? < BookmarkPage/> : < Navigate to = "/login"/>} />
         <Route path = "/mockman" element = { <MockAPI /> } />
       </Routes>
     </div>
