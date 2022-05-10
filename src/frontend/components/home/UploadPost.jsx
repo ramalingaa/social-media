@@ -17,6 +17,7 @@ const UploadPost = ({content = "", image = "", postId = "", setEditForm ="", set
         reader.onload = (e) => {
             setNewPostsData((prev) => ({...prev, image:e.target.result}))
         }
+       
 
     }
     const updateContent = (e) => {
@@ -27,7 +28,6 @@ const UploadPost = ({content = "", image = "", postId = "", setEditForm ="", set
             try {
                 const response = await axios.post(`/api/posts/edit/${postId}`,{postData:newPostsData},{headers:{authorization:jwtToken}})
                 dispatch({type:"SET_POSTS_DATA", payload:response.data.posts})
-                console.log(response.data.posts)
                 setNewPostsData(() =>({content:"", image:"", userName:userProfileData.firstName + userProfileData.lastName}))
                 navigate("/myposts")
                 setEditForm((prev) => !prev)

@@ -9,6 +9,7 @@ const usePosts = () => useContext(PostsContext)
 const PostsProvider = ({children}) => {
 
     const [postsState, dispatch] = useReducer(postsReducer, {postsData:[], usersData:[], bookmarksData:[]})
+
     const { jwtToken } = useAuth()
     useEffect(() => {
         if(jwtToken){

@@ -32,11 +32,10 @@ const UserProfileCard = () => {
             <p>Liked</p>
             <p className = "profile-count">{likeCounter}</p>
         </div>
-        <div className = "postbtn-label-wrapper">
+        <NavLink className ={({isActive}) => isActive ?  "postbtn-label-wrapper activeLink": "postbtn-label-wrapper"} to = "/bookmarks">
             <p>Bookmarks</p>
             <p className = "profile-count">{bookmarksData.length}</p>
-        </div>
-        
+        </NavLink>        
     </div>
   )
 }

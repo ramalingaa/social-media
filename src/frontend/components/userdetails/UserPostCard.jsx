@@ -7,7 +7,9 @@ const UserPostCard = ({post}) => {
     const [likedDisplay, setLikedDisplay] = useState(false)
     const [displayEditPost, setDisplayEditPost] = useState(false)
     const { jwtToken, userProfileData } = useAuth()
-    const { dispatch } = usePosts()
+    const { postsState, dispatch } = usePosts()
+    const { usersData } = postsState
+    const [postOwner, setPostOwner] = useState({})
     const likeHandler = likeHandlerFunction(likedDisplay, post, jwtToken, dispatch)
     useEffect(() =>{
         
@@ -18,6 +20,8 @@ const UserPostCard = ({post}) => {
         else {
             setLikedDisplay(() => false)
         }
+        const owner = usersData.find((user) => user.username === post.userName)
+        setPostOwner(() => owner)
     },[post])
     
     const toggleEditPostCard = () => {
@@ -27,7 +31,7 @@ const UserPostCard = ({post}) => {
     <div className = "feedcard-wrapper">
         <div className = "postbtn-label-wrapper username-eclipse">
             <div className="user-details-wrapper">
-                <img src = {userProfileData.badge} alt = "profile badge" className="avatar"/>
+                <img src = {postOwner.badge} alt = "profile badge" className="avatar"/>
                 <p className = "username">{post.userName}</p>
             </div>
             <div className = "editpost-icon-wrapper">
@@ -37,7 +41,8 @@ const UserPostCard = ({post}) => {
                 </div>
             </div>
         </div>
-        <img src={post.image} alt = "feed" className="res-img" />
+        {post.image.includes("video") ? <video src = {post.image} className="res-img" controls/> :<img src={post.image} alt = "feed" className="res-img" />}
+        
         <p>{post.content}</p>
         <div className = "feedcard-btn-wrapper">
             <button className= {`btn btn-text ${likedDisplay && "selected"}`} onClick = { likeHandler }><i className="far fa-thumbs-up feed-btn-icon"></i>Like</button>
