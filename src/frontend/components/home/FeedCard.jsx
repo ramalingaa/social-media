@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { usePosts, useAuth } from "../../context/index-context"
 import { likeHandlerFunction } from './likeHandlerFunction'
 import  axios  from 'axios';
-import { Link, Outlet } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { Comments } from '../index-components';
 const FeedCard = ({ pInfo}) => {
     const [postUploader, setPostUploader] = useState({})

@@ -416,6 +416,16 @@ label {
 
 }
 
+.sort-wrapper {
+  padding: 0 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+}
+.hr-align {
+  width: 65%;
+}
 /* edit post card css starts here */
 .editpost-icon-wrapper {
   position: relative;
