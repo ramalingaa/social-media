@@ -1,8 +1,8 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../../context/index-context'
 
-const UserProfile = ({setProfileDisplay}) => {
+const UserProfile = ({setProfileDisplay, clickOutside}) => {
     const { userProfileData, setJwtToken } = useAuth()
     const  navigate  = useNavigate()
     const logoutUser = () => {
@@ -13,12 +13,10 @@ const UserProfile = ({setProfileDisplay}) => {
         
       }
   return (
-    <div className = "profile-card-wrapper">
+    <div className = "profile-card-wrapper" ref = {clickOutside}>
         <p>Hello <strong>{userProfileData.firstName}</strong></p>
-        <p >My Profile</p>
-        <p>Settings</p>
+        <Link to = "/myprofile">My Profile</Link>
         <button className="btn outlined" onClick = {logoutUser}>Logout</button>
-        
     </div>
   )
 };
