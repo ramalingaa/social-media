@@ -3,6 +3,7 @@ import { usePosts, useAuth } from "../../context/index-context"
 import { likeHandlerFunction } from './likeHandlerFunction'
 import  axios  from 'axios';
 import { Link, Outlet } from "react-router-dom"
+import { Comments } from '../index-components';
 const FeedCard = ({ pInfo}) => {
     const [postUploader, setPostUploader] = useState({})
     const { postsState, dispatch } = usePosts()
@@ -11,6 +12,7 @@ const FeedCard = ({ pInfo}) => {
     const [likedDisplay, setLikedDisplay] = useState(false)
     const [bookmarkDisplay, setBookmarkDisplay] = useState(false)
     const [followDisplay, setFollowDisplay] = useState(false)
+    const [toggleComments, setToggleComments] = useState(false)
     useEffect(() =>{
         const user = usersData.find((user) => (user.firstName + user.lastName) === pInfo.userName)
         setPostUploader(() => user)
@@ -92,6 +94,9 @@ const FeedCard = ({ pInfo}) => {
             } 
         }
     }
+    const commentHandler = () => {
+        setToggleComments((prev) => !prev)
+    }
   return (
     <div className = "feedcard-wrapper">
         <div className = "postbtn-label-wrapper username-eclipse">
@@ -108,9 +113,10 @@ const FeedCard = ({ pInfo}) => {
         <p>{pInfo.content}</p>
         <div className = "feedcard-btn-wrapper">
             <button className= {`btn btn-text ${likedDisplay && "selected"}`} onClick = { likeHandler }><i className="far fa-thumbs-up feed-btn-icon"></i>Like</button>
-            <button className="btn btn-text"><i className="fas fa-comment-dots feed-btn-icon"></i>Comment</button>     
+            <button className="btn btn-text" onClick = {commentHandler}><i className="fas fa-comment-dots feed-btn-icon"></i>Comment</button>     
             <button className={`btn btn-text ${bookmarkDisplay && "selected"}`} onClick = {bookmarkPost}><i className="far fa-star feed-btn-icon"></i>Bookmark</button>      
         </div>
+        {toggleComments && <Comments pInfo = {pInfo}/>}
     </div>
   )
 }
