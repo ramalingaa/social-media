@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from "axios"
 import { useAuth, usePosts } from "../../context/index-context"
 import { useNavigate } from "react-router-dom"
+import { useClickOutside } from '../../../customeHooks/useClickOutside'
 
 const UploadPost = ({content = "", image = "", postId = "", setEditForm ="", setDisplayEditPost =""}) => {
     const { jwtToken, userProfileData } = useAuth()
@@ -53,8 +54,9 @@ const UploadPost = ({content = "", image = "", postId = "", setEditForm ="", set
                 setEditForm((prev) => !prev)
                 setDisplayEditPost((prev) => !prev)
     }
+    let clickOutside = useClickOutside(setEditForm)
     return (
-    <div className = {`feedcard-wrapper upload-post-wrapper ${content && "edit-form-position"}`}>
+    <div className = {`feedcard-wrapper upload-post-wrapper ${content && "edit-form-position"}`} ref = {clickOutside}>
         <textarea rows = "10" cols = "20" placeholder="Start a post..." onChange = {updateContent} className="text-area" value = {newPostsData.content}></textarea>
         <div className = "postbtn-label-wrapper">
             <label>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import  axios  from 'axios';
 import { UploadPost } from '../index-components';
 import { useAuth, usePosts } from "../../context/index-context"
+import { useClickOutside } from '../../../customeHooks/useClickOutside';
 
 const EditPostCard = ({post, setDisplayEditPost}) => {
 const { jwtToken } = useAuth()
@@ -20,8 +21,10 @@ const deletePost = async() => {
 const editPost = () => {
     setEditForm((prev) => !prev)
 }
+let clickOutside = useClickOutside(setDisplayEditPost)
+
   return (
-    <div>
+    <div ref = {clickOutside}>
         <div className = "editpost-wrapper">
             <button className = "btn edit-btn" onClick = {editPost}>Edit Post</button>
             <button className = "btn edit-btn" onClick = {deletePost}>Delete Post</button>

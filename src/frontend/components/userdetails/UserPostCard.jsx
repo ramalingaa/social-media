@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { useClickOutside } from '../../../customeHooks/useClickOutside';
 import { useAuth, usePosts } from "../../context/index-context"
 import { likeHandlerFunction } from '../home/likeHandlerFunction'
 import { EditPostCard } from '../index-components';
@@ -27,6 +28,7 @@ const UserPostCard = ({post}) => {
     const toggleEditPostCard = () => {
         setDisplayEditPost((prev) => !prev)
     }
+
   return (
     <div className = "feedcard-wrapper">
         <div className = "postbtn-label-wrapper username-eclipse">

@@ -1,8 +1,9 @@
 import React from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { useClickOutside } from '../../../customeHooks/useClickOutside';
 import { useAuth } from '../../context/index-context'
 
-const UserProfile = ({setProfileDisplay, clickOutside}) => {
+const UserProfile = ({setProfileDisplay}) => {
     const { userProfileData, setJwtToken } = useAuth()
     const  navigate  = useNavigate()
     const logoutUser = () => {
@@ -10,8 +11,8 @@ const UserProfile = ({setProfileDisplay, clickOutside}) => {
         setJwtToken(() => "")
         setProfileDisplay((prev) => !prev)
         navigate("/login")
-        
       }
+    let clickOutside = useClickOutside(setProfileDisplay)
   return (
     <div className = "profile-card-wrapper" ref = {clickOutside}>
         <p>Hello <strong>{userProfileData.firstName}</strong></p>
