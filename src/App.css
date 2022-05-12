@@ -4,6 +4,7 @@
   --box-shadow-color: rgba(0, 0, 0, 0.2);
   --div-border-color: rgb(218, 216, 216);
   --form-background-color: rgb(172, 171, 171,0.5);
+  --comment-background:#f2f2f2;
 }
 .primary {
   background-color: var(--app-color-main);
@@ -400,6 +401,7 @@ label {
 .username {
   text-transform: capitalize;
   padding: 0.5rem 0 0 0;
+  font-weight: bold;
 }
 .feedcard-btn-wrapper {
   border-top: 1px solid var(--div-border-color);
@@ -414,6 +416,16 @@ label {
 
 }
 
+.sort-wrapper {
+  padding: 0 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+}
+.hr-align {
+  width: 65%;
+}
 /* edit post card css starts here */
 .editpost-icon-wrapper {
   position: relative;
@@ -556,4 +568,43 @@ label {
   font-size: 2rem;
   width:70%;
   margin: 2rem auto;
+}
+/* comment section wrapper */
+.comment-wrapper {
+  padding: 1rem;
+  display: flex;
+  align-items: flex-end;
+}
+.comment-input {
+  padding:0.7rem;
+  width: 80%;
+  border-radius: 2rem;
+  border: 1px solid var(--form-background-color);
+}
+.comment-input:focus {
+  outline: 2px solid var(--form-background-color);
+}
+.comment-card-wrapper {
+  padding: 1rem;
+ 
+}
+.avatar-micro {
+  width: 2rem;
+  height: 2rem;
+}
+.comment-text-wrapper {
+  background-color: var(--comment-background);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 87%;
+  position: relative;
+}
+.comment-btn-wrapper {
+  position: absolute;
+  top: 0.5rem;
+  right: 0;
+  display: flex;
+  gap: 1rem;
 }
