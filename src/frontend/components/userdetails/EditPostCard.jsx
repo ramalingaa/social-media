@@ -3,16 +3,18 @@ import  axios  from 'axios';
 import { UploadPost } from '../index-components';
 import { useAuth, usePosts } from "../../context/index-context"
 import { useClickOutside } from '../../../customeHooks/useClickOutside';
+import { useDispatch } from "react-redux"
+import { postActions } from './../../../redux store/postSlice';
 
 const EditPostCard = ({post, setDisplayEditPost}) => {
 const { jwtToken } = useAuth()
-const { dispatch } = usePosts()
+const  dispatch  = useDispatch()
 const [editForm, setEditForm] = useState(false)
 
 const deletePost = async() => {
     try {
         const response = await axios.delete(`/api/posts/${post._id}`,{headers:{authorization:jwtToken}})
-        dispatch({ type: "SET_POSTS_DATA", payload: response.data.posts })
+        dispatch(postActions.getPostsData(response.data.posts))
     }
     catch(e){
         console.log(e)

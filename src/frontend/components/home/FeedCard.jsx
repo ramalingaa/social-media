@@ -1,18 +1,25 @@
 import React, {useEffect, useState} from 'react'
-import { usePosts, useAuth } from "../../context/index-context"
+import { useAuth } from "../../context/index-context"
 import { likeHandlerFunction } from './likeHandlerFunction'
 import  axios  from 'axios';
 import { Link } from "react-router-dom"
 import { Comments } from '../index-components';
+import { useSelector, useDispatch } from "react-redux"
+import { postActions } from "../../../redux store/postSlice"
+
+
 const FeedCard = ({ pInfo}) => {
     const [postUploader, setPostUploader] = useState({})
-    const { postsState, dispatch } = usePosts()
     const { jwtToken, userProfileData, setUserProfileData } = useAuth()
-    const { usersData, bookmarksData } = postsState
+    const { usersData, bookmarksData } = useSelector((state) => state.post)
+
+    const dispatch = useDispatch()
     const [likedDisplay, setLikedDisplay] = useState(false)
     const [bookmarkDisplay, setBookmarkDisplay] = useState(false)
     const [followDisplay, setFollowDisplay] = useState(false)
     const [toggleComments, setToggleComments] = useState(false)
+
+
     useEffect(() =>{
         const user = usersData.find((user) => (user.firstName + user.lastName) === pInfo.userName)
         setPostUploader(() => user)
@@ -50,7 +57,7 @@ const FeedCard = ({ pInfo}) => {
             try {
                 const response = await axios.post(`/api/users/remove-bookmark/${pInfo._id}`,{}, { headers: { authorization: jwtToken } })
                 console.log(response.data.bookmarks)
-                dispatch({ type: "SET_BOOKMARK_DATA", payload: response.data.bookmarks });
+                dispatch(postActions.getBookmarkData(response.data.bookmarks))
             }
             catch (e) {
                 console.log(e)
@@ -59,7 +66,8 @@ const FeedCard = ({ pInfo}) => {
         else {
             try {
                 const response = await axios.post(`/api/users/bookmark/${pInfo._id}`,{}, { headers: { authorization: jwtToken } })
-                dispatch({ type: "SET_BOOKMARK_DATA", payload: response.data.bookmarks });
+                dispatch(postActions.getBookmarkData(response.data.bookmarks))
+
             }
             catch (e) {
                 console.log(e)
@@ -74,7 +82,8 @@ const FeedCard = ({ pInfo}) => {
                 const response = await axios.post(`/api/users/unfollow/${postUploader._id}`,{}, { headers: { authorization: jwtToken } })
                 setUserProfileData(() => response.data.user)
                 const newuserData = [...filteredUsers, response.data.followUser]
-                dispatch({type:"SET_USER_DATA", payload: newuserData})
+                dispatch(postActions.getUserData(newuserData))
+
 
             }
             catch (e) {
@@ -87,7 +96,7 @@ const FeedCard = ({ pInfo}) => {
                 const response = await axios.post(`/api/users/follow/${postUploader._id}`,{}, { headers: { authorization: jwtToken } })
                 setUserProfileData(() => response.data.user)
                 const newuserData = [...filteredUsers, response.data.followUser]
-                dispatch({type:"SET_USER_DATA", payload: newuserData})
+                dispatch(postActions.getUserData(newuserData))
             }
             catch (e) {
                 console.log(e)

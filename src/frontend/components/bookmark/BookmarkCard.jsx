@@ -1,10 +1,9 @@
-import React, { useState, useLayoutEffect} from 'react'
-import { usePosts } from "../../context/index-context"
+import React from 'react'
 import { FeedCard } from '../index-components'
+import { useSelector } from "react-redux"
 
 const BookmarkCard = (postId) => {
-    const { postsState } = usePosts()
-    const { postsData } = postsState
+    const { postsData } = useSelector((state) => state.post)
     const post = postsData.find((post) => post._id === postId.postId)
   return (
     <div>

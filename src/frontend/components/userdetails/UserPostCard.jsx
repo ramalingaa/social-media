@@ -3,14 +3,17 @@ import { useClickOutside } from '../../../customeHooks/useClickOutside';
 import { useAuth, usePosts } from "../../context/index-context"
 import { likeHandlerFunction } from '../home/likeHandlerFunction'
 import { EditPostCard } from '../index-components';
+import { useSelector, useDispatch } from "react-redux"
 
 const UserPostCard = ({post}) => {
     const [likedDisplay, setLikedDisplay] = useState(false)
     const [displayEditPost, setDisplayEditPost] = useState(false)
-    const { jwtToken, userProfileData } = useAuth()
-    const { postsState, dispatch } = usePosts()
-    const { usersData } = postsState
     const [postOwner, setPostOwner] = useState({})
+
+    const { jwtToken, userProfileData } = useAuth()
+    const {  dispatch } = useDispatch()
+    const { usersData } = useSelector((state) => state.post)
+    
     const likeHandler = likeHandlerFunction(likedDisplay, post, jwtToken, dispatch)
     useEffect(() =>{
         

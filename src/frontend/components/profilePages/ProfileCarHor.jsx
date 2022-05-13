@@ -2,10 +2,12 @@ import React, { useState, useEffect}from 'react'
 import { useAuth, usePosts } from "../../context/index-context"
 import {Outlet, NavLink } from "react-router-dom"
 import { UpdateProfileImage, UpdateBgImage, UpdateBio, UpdatePortFolio } from "../index-components"
+import { useSelector } from 'react-redux'
+
 const ProfileCarHor = () => {
     const { userProfileData } = useAuth()
-    const { postsState } = usePosts()
-    const { postsData } = postsState
+    const { postsData } = useSelector((state) => state.post)
+
     const [userPosts, setUserPosts] = useState(0)
     const [updatePhoto, setUpdatePhoto] = useState(false)
     const [updateBgPhoto, setUpdateBgPhoto] = useState(false)
@@ -21,7 +23,7 @@ const ProfileCarHor = () => {
         <div className = "user-profile-cardH user-name-hor user-name-ver">
             <div>
                 <img src = {userProfileData.bgImage} alt = "profile badge" className = "res-img"/>
-                <button onClick = {() => setUpdateBgPhoto(() => true)} className="update-bg-btn" title = "Update Background Image"><i class="fa-solid fa-pen"></i></button>
+                <button onClick = {() => setUpdateBgPhoto(() => true)} className="update-bg-btn" title = "Update Background Image"><i className="fa-solid fa-pen"></i></button>
                     { updateBgPhoto && 
                     <div className = "edit-from-wrapper">
                         <UpdateBgImage setUpdateBgPhoto = {setUpdateBgPhoto}/>
@@ -29,7 +31,7 @@ const ProfileCarHor = () => {
             </div>
             <div className = "avatar-bg-wrapper">
                 <img src = {userProfileData.badge} alt = "profile badge" className = "avatar lg profile-image-bg" />
-                <button onClick = {() => setUpdatePhoto(() => true)} className="update-profile-btn" title = "Update Profile Image"><i class="fa-solid fa-pen"></i></button>
+                <button onClick = {() => setUpdatePhoto(() => true)} className="update-profile-btn" title = "Update Profile Image"><i className="fa-solid fa-pen"></i></button>
                 { updatePhoto && 
                 <div className = "edit-from-wrapper">
                     <UpdateProfileImage setUpdatePhoto = {setUpdatePhoto}/>
@@ -38,7 +40,7 @@ const ProfileCarHor = () => {
                     <p className = "username text-medium" to = "/myprofile">{userProfileData.firstName + " " + userProfileData.lastName}</p>
                     <div className = "postbtn-label-wrapper">
                         <p>Bio: {userProfileData.bio}</p>
-                        <button onClick = {() => setUpdateBio(() => true)} className="update-profile-btn" title = "Update Bio"><i class="fa-solid fa-pen"></i></button>
+                        <button onClick = {() => setUpdateBio(() => true)} className="update-profile-btn" title = "Update Bio"><i className="fa-solid fa-pen"></i></button>
                         { updateBio && 
                         <div className = "edit-from-wrapper">
                             <UpdateBio setUpdateBio = {setUpdateBio}/>
@@ -46,7 +48,7 @@ const ProfileCarHor = () => {
                     </div>
                     <div className = "postbtn-label-wrapper">
                         <a href = {userProfileData.portFolioUrl} target="_blank" rel = "noopener noreferrer">Portfolio link: <span className = "portfolio-link">{userProfileData.portFolioUrl}</span></a>
-                        <button onClick = {() => setUpdatePortfolio(() => true)} className="update-profile-btn" title = "Update Portfolio"><i class="fa-solid fa-pen"></i></button>
+                        <button onClick = {() => setUpdatePortfolio(() => true)} className="update-profile-btn" title = "Update Portfolio"><i className="fa-solid fa-pen"></i></button>
                         { updatePortfolio && 
                         <div className = "edit-from-wrapper">
                             <UpdatePortFolio setUpdatePortfolio = {setUpdatePortfolio}/>

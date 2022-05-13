@@ -3,13 +3,14 @@ import { createContext, useContext, useReducer, useEffect } from 'react';
 import { postsReducer } from "./context-functions/postsReducer"
 import  axios  from 'axios';
 import { useAuth } from "./index-context"
+import { useDispatch } from 'react-redux';
+import { postActions } from "../../redux store/postSlice"
 const PostsContext = createContext()
 const usePosts = () => useContext(PostsContext)
 
+
 const PostsProvider = ({children}) => {
-
-    const [postsState, dispatch] = useReducer(postsReducer, {postsData:[], usersData:[], bookmarksData:[]})
-
+    const dispatch = useDispatch()
     const { jwtToken } = useAuth()
     useEffect(() => {
         if(jwtToken){
@@ -19,7 +20,7 @@ const PostsProvider = ({children}) => {
         }
     },[jwtToken])
     return (
-        <PostsContext.Provider value = {{ postsState, dispatch }}>
+        <PostsContext.Provider value = {{ dispatch }}>
             {children}
         </PostsContext.Provider>
     )
@@ -30,7 +31,7 @@ function getPosts(dispatch) {
     (async () => {
         try {
             const response = await axios.get("/api/posts");
-            dispatch({ type: "SET_POSTS_DATA", payload: response.data.posts });
+            dispatch(postActions.getPostsData(response.data.posts))
         }
         catch (e) {
             console.log(e);
@@ -41,7 +42,8 @@ function getUsers(dispatch) {
     (async () => {
         try {
             const response = await axios.get("/api/users");
-            dispatch({ type: "SET_USER_DATA", payload: response.data.users });
+            dispatch(postActions.getUserData(response.data.users))
+
         }
         catch (e) {
             console.log(e);
@@ -52,7 +54,8 @@ function getBooksmarks(dispatch, jwtToken) {
     (async () => {
         try {
             const response = await axios.get("/api/users/bookmark", {headers:{authorization: jwtToken}});
-            dispatch({ type: "SET_BOOKMARK_DATA", payload: response.data.bookmarks });
+            dispatch(postActions.getBookmarkData(response.data.bookmarks))
+
         }
         catch (e) {
             console.log(e);

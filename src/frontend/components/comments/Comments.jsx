@@ -1,6 +1,4 @@
-import axios from 'axios'
-import React, { useState, useEffect } from 'react'
-import { useAuth, usePosts } from "../../context/index-context"
+import React from 'react'
 import { CommentsCard, CommentPost } from "../index-components"
 const Comments = ({pInfo}) => {
 

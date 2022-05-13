@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useAuth, usePosts } from "../../context/index-context"
+import { useSelector } from "react-redux"
+
 const UserProfileCard = () => {
     const { userProfileData } = useAuth()
-    const { postsState } = usePosts()
-    const { postsData, bookmarksData } = postsState
+    const { postsData, bookmarksData } = useSelector((state) => state.post)
     const [userPosts, setUserPosts] = useState(0)
     const [likeCounter, setLikeCounter] = useState(0)
     useEffect(() => {

@@ -1,13 +1,16 @@
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
-import { useAuth, usePosts } from "../../context/index-context"
+import React, { useState } from 'react'
+import { useAuth } from "../../context/index-context"
+import { useSelector, useDispatch } from "react-redux"
+import { postActions } from "../../../redux store/postSlice"
 
 const CommentPost = ({pInfo, comment = "", setEditComment = ""}) => {
 
     const [commentText, setCommentText] = useState(() =>comment ? comment.commentData:"")
     const { jwtToken } = useAuth()
-    const { postsState, dispatch } = usePosts()
-    const { postsData } = postsState
+    const { postsData } = useSelector((state) => state.post)
+    const dispatch = useDispatch()
+
     const textChangeHandler = (e) => {
         setCommentText(() => e.target.value)
     }
@@ -23,8 +26,7 @@ const CommentPost = ({pInfo, comment = "", setEditComment = ""}) => {
                             return post
                         }
                     })
-                    console.log(newPostsData)
-                    dispatch({ type: "SET_POSTS_DATA", payload:newPostsData})
+                    dispatch(postActions.getPostsData(newPostsData))
                     setCommentText(() => "")
                     setEditComment(() => false)
             
@@ -43,7 +45,7 @@ const CommentPost = ({pInfo, comment = "", setEditComment = ""}) => {
                     return post
                 }
             })
-            dispatch({ type: "SET_POSTS_DATA", payload:newPostsData})
+            dispatch(postActions.getPostsData(newPostsData))
             setCommentText(() => "")
 
         }catch(e){

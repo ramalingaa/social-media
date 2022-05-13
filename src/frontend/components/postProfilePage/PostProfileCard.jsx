@@ -1,9 +1,8 @@
 import React, { useState, useEffect}from 'react'
-import { useAuth, usePosts } from "../../context/index-context"
 import {Outlet, NavLink, useParams } from "react-router-dom"
+import { useSelector } from 'react-redux'
 const PostProfileCard = () => {
-    const { postsState } = usePosts()
-    const { postsData, usersData } = postsState
+    const { postsData, usersData } = useSelector((state) => state.post)
     const [userPosts, setUserPosts] = useState(0)
     const [postOwner, setPostOwner] = useState({})
     let params = useParams()

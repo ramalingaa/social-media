@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { usePosts, useAuth } from "../../context/index-context"
 import { FeedCard, UploadPost, UserProfileCard } from "../index-components"
+import { useSelector } from "react-redux"
 const Home = () => {
-  const { postsState } = usePosts()
-  const { postsData } = postsState
+  
+  const { postsData } = useSelector((state) => state.post)
+
   const { userProfileData } = useAuth()
   const [userFeed, setUserFeed] = useState([])
   useEffect(() => {
