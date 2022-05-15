@@ -1,10 +1,11 @@
 import React from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useClickOutside } from '../../../customeHooks/useClickOutside';
-import { useAuth } from '../../context/index-context'
+import { useSelector } from 'react-redux';
 
 const UserProfile = ({setProfileDisplay}) => {
-    const { userProfileData, setJwtToken } = useAuth()
+    const { userProfileData, setJwtToken } = useSelector((store) => store.post)
+
     const  navigate  = useNavigate()
     const logoutUser = () => {
         localStorage.removeItem("ONE")

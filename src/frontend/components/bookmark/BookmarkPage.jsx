@@ -3,7 +3,7 @@ import { BookmarkCard, UserProfileCard } from "../index-components"
 import { useSelector } from "react-redux"
 const BookmarkPage = () => {
 
-    const { bookmarksData } = useSelector((state) => state.post)
+    const { bookmarksData } = useSelector((store) => store.post)
   return (
     <div className = "home-main-wrapper">
     <div>

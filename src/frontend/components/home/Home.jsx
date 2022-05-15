@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { usePosts, useAuth } from "../../context/index-context"
 import { FeedCard, UploadPost, UserProfileCard } from "../index-components"
 import { useSelector } from "react-redux"
 const Home = () => {
   
-  const { postsData } = useSelector((state) => state.post)
-
-  const { userProfileData } = useAuth()
+  const { postsData, userProfileData } = useSelector((store) => store.post)
   const [userFeed, setUserFeed] = useState([])
   useEffect(() => {
     const postsRenderData = postsData.filter((post) => post.userName !== userProfileData.firstName + userProfileData.lastName)

@@ -1,15 +1,16 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate, Link } from "react-router-dom"
-import { useAuth } from '../../context/index-context'
+import { useDispatch } from "react-redux"
+import { postActions } from '../../../redux store/postSlice';
 
 const Login = () => {
 
     const [showPassword, setShowPassword] = useState(false)
     const [error, setError] = useState({emailNotFound:false,wrongCredentials:false, blankError: false, otherError:false})
     const [userData, setUserData] = useState({email:"", password:""})
-    const {  setJwtToken, setUserProfileData } = useAuth()
     const navigate = useNavigate() 
+    const dispatch = useDispatch()
     const updateUserData = (e) => {
         const { name } = e.target
         setUserData((prev) => ({...prev, [name]:e.target.value}))
@@ -21,8 +22,8 @@ const Login = () => {
                 const response = await axios.post("/api/auth/login",userData)
                 if(response.status === 200){
                     localStorage.setItem("ONE",JSON.stringify({"JWT_TOKEN_ONE":response.data.encodedToken, "USER_PROFILE_ONE":response.data.foundUser}))
-                    setJwtToken(() =>response.data.encodedToken)
-                    setUserProfileData(() =>response.data.foundUser)
+                    dispatch(postActions.getJwtToken(response.data.encodedToken))
+                    dispatch(postActions.getLoggedUserData(response.data.foundUser))
                     navigate("/")
                 } else {
                     throw new Error()
@@ -55,8 +56,8 @@ const Login = () => {
             const response = await axios.post("/api/auth/login",guestData)
             console.log(response.data)
             localStorage.setItem("ONE",JSON.stringify({"JWT_TOKEN_ONE":response.data.encodedToken, "USER_PROFILE_ONE":response.data.foundUser}))
-            setJwtToken(() =>response.data.encodedToken)
-            setUserProfileData(() =>response.data.foundUser)
+            dispatch(postActions.getJwtToken(response.data.encodedToken))
+            dispatch(postActions.getLoggedUserData(response.data.foundUser))
             navigate("/")
 
         }catch(e) {

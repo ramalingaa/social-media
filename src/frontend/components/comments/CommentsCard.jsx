@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { useAuth, usePosts } from "../../context/index-context"
 import axios from 'axios'
 import { CommentPost } from "../index-components"
 import { useSelector, useDispatch } from "react-redux"
 import { postActions } from "../../../redux store/postSlice"
 const CommentsCard = ({comment, pInfo}) => {
     const [editComment, setEditComment] = useState(false)
-    const { jwtToken } = useAuth()
-    const { postsData, usersData } = useSelector((state) => state.post)
+    const { jwtToken } = useSelector((store) => store.post)
+    const { postsData, usersData } = useSelector((store) => store.post)
     const dispatch = useDispatch()
     const commentOwner = usersData.find((user) => user.username === comment.username)
   

@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
-import { useAuth } from "../../context/index-context"
+import { useDispatch, useSelector } from 'react-redux';
+import { postActions } from './../../../redux store/postSlice';
 
 const UpdateBio = ({setUpdateBio}) => {
     const [bioText, setBioText] = useState("")
-    const { setUserProfileData } = useAuth()
+    const dispatch = useDispatch()
+    const { userProfileData } = useSelector((store) => store.post)
     const updateBio = (e) => {
         setBioText(() => e.target.value)
     }
     const updateBioHandler = (e) => {
         if(bioText){
-            setUserProfileData((prev) => ({...prev, bio: bioText}))
+            dispatch(postActions.getLoggedUserData({...userProfileData, bio: bioText}))
         }
         setUpdateBio(() => false)
     }

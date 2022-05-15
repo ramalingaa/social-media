@@ -1,12 +1,10 @@
 import React, { useState, useEffect}from 'react'
-import { useAuth, usePosts } from "../../context/index-context"
 import {Outlet, NavLink } from "react-router-dom"
 import { UpdateProfileImage, UpdateBgImage, UpdateBio, UpdatePortFolio } from "../index-components"
 import { useSelector } from 'react-redux'
 
 const ProfileCarHor = () => {
-    const { userProfileData } = useAuth()
-    const { postsData } = useSelector((state) => state.post)
+    const { postsData, userProfileData } = useSelector((store) => store.post)
 
     const [userPosts, setUserPosts] = useState(0)
     const [updatePhoto, setUpdatePhoto] = useState(false)

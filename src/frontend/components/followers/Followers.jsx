@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import { useAuth } from "../../context/index-context"
 import { FollowerCard } from "../index-components"
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 
 const Followers = () => {
-    const { userProfileData } = useAuth()
-    const { usersData } = useSelector((state) => state.post)
+    const { usersData, userProfileData } = useSelector((store) => store.post)
     const [user, setUser] = useState()
     const params = useParams()
     useEffect(() => {

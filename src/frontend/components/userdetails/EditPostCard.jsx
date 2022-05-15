@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import  axios  from 'axios';
 import { UploadPost } from '../index-components';
-import { useAuth, usePosts } from "../../context/index-context"
 import { useClickOutside } from '../../../customeHooks/useClickOutside';
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { postActions } from './../../../redux store/postSlice';
 
 const EditPostCard = ({post, setDisplayEditPost}) => {
-const { jwtToken } = useAuth()
+const { jwtToken } = useSelector((store) => store.post)
+
 const  dispatch  = useDispatch()
 const [editForm, setEditForm] = useState(false)
 

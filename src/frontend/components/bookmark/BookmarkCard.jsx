@@ -3,7 +3,7 @@ import { FeedCard } from '../index-components'
 import { useSelector } from "react-redux"
 
 const BookmarkCard = (postId) => {
-    const { postsData } = useSelector((state) => state.post)
+    const { postsData } = useSelector((store) => store.post)
     const post = postsData.find((post) => post._id === postId.postId)
   return (
     <div>

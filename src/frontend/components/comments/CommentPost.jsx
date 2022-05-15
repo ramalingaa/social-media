@@ -1,14 +1,14 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { useAuth } from "../../context/index-context"
 import { useSelector, useDispatch } from "react-redux"
 import { postActions } from "../../../redux store/postSlice"
 
 const CommentPost = ({pInfo, comment = "", setEditComment = ""}) => {
 
     const [commentText, setCommentText] = useState(() =>comment ? comment.commentData:"")
-    const { jwtToken } = useAuth()
-    const { postsData } = useSelector((state) => state.post)
+    const { jwtToken } = useSelector((store) => store.post)
+
+    const { postsData } = useSelector((store) => store.post)
     const dispatch = useDispatch()
 
     const textChangeHandler = (e) => {

@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import axios from "axios"
-import { useAuth, usePosts } from "../../context/index-context"
 import { useNavigate } from "react-router-dom"
 import { useClickOutside } from '../../../customeHooks/useClickOutside'
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { postActions } from "../../../redux store/postSlice"
 
 
 const UploadPost = ({content = "", image = "", postId = "", setEditForm ="", setDisplayEditPost =""}) => {
-    const { jwtToken, userProfileData } = useAuth()
+    const { jwtToken, userProfileData } = useSelector((store) => store.post)
     const  dispatch  = useDispatch()
     const [newPostsData, setNewPostsData] = useState({content:content, image:image, userName:userProfileData.firstName + userProfileData.lastName})
     const navigate = useNavigate()

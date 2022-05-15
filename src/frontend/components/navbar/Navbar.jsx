@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { useAuth } from "../../context/index-context"
 import { UserProfile } from "../index-components"
-
+import { useSelector } from "react-redux"
 
 const Navbar = () => {
-  const { jwtToken } = useAuth()
+  const { jwtToken } = useSelector((store) => store.post)
   const [profileDisplay, setProfileDisplay] = useState(false)
   const toggleProfileCard = () => {
     setProfileDisplay((prev) => !prev)

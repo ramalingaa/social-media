@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import { useAuth } from "../../context/index-context"
 import { likeHandlerFunction } from './likeHandlerFunction'
 import  axios  from 'axios';
 import { Link } from "react-router-dom"
@@ -10,9 +9,7 @@ import { postActions } from "../../../redux store/postSlice"
 
 const FeedCard = ({ pInfo}) => {
     const [postUploader, setPostUploader] = useState({})
-    const { jwtToken, userProfileData, setUserProfileData } = useAuth()
-    const { usersData, bookmarksData } = useSelector((state) => state.post)
-
+    const { usersData, bookmarksData, jwtToken, userProfileData  } = useSelector((store) => store.post)
     const dispatch = useDispatch()
     const [likedDisplay, setLikedDisplay] = useState(false)
     const [bookmarkDisplay, setBookmarkDisplay] = useState(false)
@@ -80,7 +77,7 @@ const FeedCard = ({ pInfo}) => {
             try {
                 const filteredUsers = usersData.filter((user) => user.username !== postUploader.username)
                 const response = await axios.post(`/api/users/unfollow/${postUploader._id}`,{}, { headers: { authorization: jwtToken } })
-                setUserProfileData(() => response.data.user)
+                dispatch(postActions.getLoggedUserData(response.data.user))
                 const newuserData = [...filteredUsers, response.data.followUser]
                 dispatch(postActions.getUserData(newuserData))
 
@@ -94,7 +91,7 @@ const FeedCard = ({ pInfo}) => {
             try {
                 const filteredUsers = usersData.filter((user) => user.username !== postUploader.username)
                 const response = await axios.post(`/api/users/follow/${postUploader._id}`,{}, { headers: { authorization: jwtToken } })
-                setUserProfileData(() => response.data.user)
+                dispatch(postActions.getLoggedUserData(response.data.user))
                 const newuserData = [...filteredUsers, response.data.followUser]
                 dispatch(postActions.getUserData(newuserData))
             }

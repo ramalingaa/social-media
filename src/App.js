@@ -1,11 +1,12 @@
 import "./App.css";
 import { Routes, Route, Navigate} from "react-router-dom"
 import { Login, ForgotPassword, Signup, Navbar, Home, UserOwnPosts, UserProfilePage, UserPostCardData, Followers, Following, PostProfilePage, BookmarkPage } from "./frontend/components/index-components"
-import { useAuth } from "./frontend/context/index-context"
 import MockAPI from "./MockAPI"
+import { useSelector } from 'react-redux';
 
 function App() {
-  const { jwtToken } = useAuth()
+  const { jwtToken } = useSelector((store) => store.post)
+
   return (
     <div className="App">
       { jwtToken && <Navbar />}
