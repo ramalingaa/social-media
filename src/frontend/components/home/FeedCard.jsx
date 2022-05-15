@@ -80,8 +80,6 @@ const FeedCard = ({ pInfo}) => {
                 dispatch(postActions.getLoggedUserData(response.data.user))
                 const newuserData = [...filteredUsers, response.data.followUser]
                 dispatch(postActions.getUserData(newuserData))
-
-
             }
             catch (e) {
                 console.log(e)

@@ -42,8 +42,10 @@ const UserPostCard = ({post}) => {
                 </div>
             </div>
         </div>
-        {post.image.includes("video") ? <video src = {post.image} className="res-img" controls/> :<img src={post.image} alt = "feed" className="res-img" />}
-        
+        {post.image && 
+        <div>
+            {post.image.includes("video") ? <video src = {post.image} className="res-img" controls/> :<img src={post.image} alt = "feed" className="res-img" />}    
+        </div>}        
         <p>{post.content}</p>
         <div className = "feedcard-btn-wrapper">
             <button className= {`btn btn-text ${likedDisplay && "selected"}`} onClick = { likeHandler }><i className="far fa-thumbs-up feed-btn-icon"></i>Like</button>
