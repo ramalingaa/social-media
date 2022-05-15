@@ -16,7 +16,7 @@ const PostsProvider = ({children}) => {
             getUsers(dispatch)
             getBooksmarks(dispatch, jwtToken)
         }
-    },[])
+    },[jwtToken])
     return (
         <PostsContext.Provider value = {{ dispatch }}>
             {children}
