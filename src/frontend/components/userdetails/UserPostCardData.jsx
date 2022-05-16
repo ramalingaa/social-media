@@ -9,8 +9,10 @@ const UserPostCardData = () => {
     const  params = useParams()
     useEffect(() => {
         const useeSpecificData = postsData.filter((post) => post.userName === (params.userId ? params.userId :userProfileData.firstName + userProfileData.lastName))
+        useeSpecificData.reverse()
         setUserPosts(() => useeSpecificData)
     },[postsData])
+    console.log(userPosts)
   return (
     <div className = "userpost-cards-wrapper">
          {userPosts.map((post) =>{
