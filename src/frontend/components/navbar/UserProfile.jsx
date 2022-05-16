@@ -1,14 +1,16 @@
 import React from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useClickOutside } from '../../../customeHooks/useClickOutside';
-import { useAuth } from '../../context/index-context'
+import { useSelector, useDispatch } from 'react-redux';
+import { postActions } from './../../../redux store/postSlice';
 
 const UserProfile = ({setProfileDisplay}) => {
-    const { userProfileData, setJwtToken } = useAuth()
+    const { userProfileData } = useSelector((store) => store.post)
+    const dispatch = useDispatch()
     const  navigate  = useNavigate()
     const logoutUser = () => {
         localStorage.removeItem("ONE")
-        setJwtToken(() => "")
+        dispatch(postActions.getJwtToken(""))
         setProfileDisplay((prev) => !prev)
         navigate("/login")
       }

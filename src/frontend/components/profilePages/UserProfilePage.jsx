@@ -1,5 +1,5 @@
 import React from 'react'
-import { UserProfileCard, ProfileCarHor } from '../index-components'
+import { ProfileCarHor } from '../index-components'
 
 const UserProfilePage = () => {
   return (

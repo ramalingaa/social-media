@@ -1,12 +1,10 @@
 import React, { useState, useEffect} from 'react'
 import { UserPostCard } from "../index-components"
-import { usePosts, useAuth } from "../../context/index-context"
 import { useParams } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 const UserPostCardData = () => {
-    const { postsState } = usePosts()
-    const { userProfileData } = useAuth()
-    const { postsData } = postsState
+    const { postsData, userProfileData } = useSelector((store) => store.post)
     const [userPosts, setUserPosts] = useState([])
     const  params = useParams()
     useEffect(() => {

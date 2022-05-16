@@ -1,10 +1,9 @@
 import React from 'react'
-import { usePosts } from "../../context/index-context"
 import { BookmarkCard, UserProfileCard } from "../index-components"
+import { useSelector } from "react-redux"
 const BookmarkPage = () => {
-    const { postsState } = usePosts()
-    const {bookmarksData } = postsState
 
+    const { bookmarksData } = useSelector((store) => store.post)
   return (
     <div className = "home-main-wrapper">
     <div>

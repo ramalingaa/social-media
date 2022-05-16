@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { useAuth } from "../../context/index-context"
+import { useDispatch, useSelector } from 'react-redux'
+import { postActions } from './../../../redux store/postSlice';
 const UpdateBgImage = ({setUpdateBgPhoto}) => {
 
     const [newImage, setNewImage] = useState("")
     const [imageTitle, setImageTitle] = useState("")
-    const { setUserProfileData } = useAuth()
-
+    const dispatch = useDispatch()
+    const { userProfileData } = useSelector((store) => store.post)
     const uploadImage = (e) => {
         const files = e.target.files
         setImageTitle(() => files[0].name)
@@ -17,7 +18,7 @@ const UpdateBgImage = ({setUpdateBgPhoto}) => {
     }
     const updateProfilePhoto = () => {
         if(imageTitle){
-            setUserProfileData((prev) => ({...prev, bgImage:newImage.image}))
+            dispatch(postActions.getLoggedUserData({...userProfileData, bgImage:newImage.image}))
             setUpdateBgPhoto(() => false)
         }
         else {
