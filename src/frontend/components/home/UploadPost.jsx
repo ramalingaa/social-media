@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { postActions } from "../../../redux store/postSlice"
 
 
-const UploadPost = ({content = "", image = "", postId = "", setEditForm ="", setDisplayEditPost =""}) => {
-    const { jwtToken, userProfileData } = useSelector((store) => store.post)
+const UploadPost = ({setPostUploadToast = "",content = "", image = "", postId = "", setEditForm ="", setDisplayEditPost =""}) => {
+    const { jwtToken, userProfileData, theme } = useSelector((store) => store.post)
     const  dispatch  = useDispatch()
     const [newPostsData, setNewPostsData] = useState({content:content, image:image, userName:userProfileData.firstName + userProfileData.lastName})
     const navigate = useNavigate()
@@ -37,6 +37,7 @@ const UploadPost = ({content = "", image = "", postId = "", setEditForm ="", set
                 setEditForm((prev) => !prev)
                 setDisplayEditPost((prev) => !prev)
                 
+                
             }catch(e){
                 console.log(e)
             }  
@@ -46,7 +47,8 @@ const UploadPost = ({content = "", image = "", postId = "", setEditForm ="", set
                 const response = await axios.post("/api/posts",{postData:newPostsData},{headers:{authorization:jwtToken}})
                 dispatch(postActions.getPostsData(response.data.posts))
                 setNewPostsData(() =>({content:"", image:"", userName:userProfileData.firstName + userProfileData.lastName}))
-                navigate("/myposts")
+                setImageName(() => "")
+                setPostUploadToast((prev) => ({...prev, post: true}))
     
             }catch(e){
                 console.log(e)
@@ -57,17 +59,27 @@ const UploadPost = ({content = "", image = "", postId = "", setEditForm ="", set
                 setEditForm((prev) => !prev)
                 setDisplayEditPost((prev) => !prev)
     }
+    const draftPostData = () => {
+        const newUserProfileData = {...userProfileData, drafts:userProfileData.drafts.concat({content:newPostsData.content, image: newPostsData.image})}
+        dispatch(postActions.getLoggedUserData(newUserProfileData))
+        setNewPostsData(() =>({content:"", image:"", userName:userProfileData.firstName + userProfileData.lastName}))
+        setPostUploadToast((prev) => ({...prev, draft: true}))
+
+    }
     let clickOutside = useClickOutside(setEditForm)
     return (
-    <div className = {`feedcard-wrapper upload-post-wrapper ${content && "edit-form-position"}`} ref = {clickOutside}>
-        <textarea rows = "10" cols = "20" placeholder="Start a post..." onChange = {updateContent} className="text-area" value = {newPostsData.content}></textarea>
+    <div className = {`feedcard-wrapper upload-post-wrapper  ${content && "edit-form-position"} ${theme}`} ref = {clickOutside}>
+        <textarea rows = "10" cols = "20" placeholder="Start a post..." onChange = {updateContent} className={`text-area ${theme}`} value = {newPostsData.content}></textarea>
         <div className = "postbtn-label-wrapper">
             <label>
                 <input type = "file" onChange = {uploadImage} />
                 <i className="fas fa-camera-retro upload-icon"></i>
                 {imageName ? imageName : "Photo"}
             </label>
-            <button className = "btn primary" onClick = {postNewPostData}>Post</button>
+            <div>
+                {!content && <button className = "btn outlined-primary" onClick = {draftPostData}>Draft</button>}
+                <button className = "btn primary" onClick = {postNewPostData}>Post</button>
+            </div>
             {content && <i className="fas fa-times cancel-icon" onClick = {cancelEditForm}></i>}
         </div>
     </div>

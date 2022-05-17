@@ -9,7 +9,7 @@ import { postActions } from "../../../redux store/postSlice"
 
 const FeedCard = ({ pInfo}) => {
     const [postUploader, setPostUploader] = useState({})
-    const { usersData, bookmarksData, jwtToken, userProfileData  } = useSelector((store) => store.post)
+    const { usersData, bookmarksData, jwtToken, userProfileData, theme  } = useSelector((store) => store.post)
     const dispatch = useDispatch()
     const [likedDisplay, setLikedDisplay] = useState(false)
     const [bookmarkDisplay, setBookmarkDisplay] = useState(false)
@@ -102,14 +102,14 @@ const FeedCard = ({ pInfo}) => {
         setToggleComments((prev) => !prev)
     }
   return (
-    <div className = "feedcard-wrapper">
+    <div className = {`feedcard-wrapper ${theme}`}>
         <div className = "postbtn-label-wrapper username-eclipse">
             <Link to = {`/${pInfo?.userName}`} className="user-details-wrapper">
                 <img src = {postUploader?.badge} alt = "profile badge" className="avatar"/>
                 <p className = "username">{pInfo.userName}</p>
             </Link>
             <div>
-                <button className = {`btn btn-text ${followDisplay && "selected"}`} onClick = {followHandler}><i className="fas fa-plus"></i> {followDisplay ? "Following" : "Follow"}</button>
+                <button className = {`btn btn-text ${followDisplay && "selected"}`} onClick = {followHandler}>{followDisplay ? "Following" : "+ Follow"}</button>
             </div>
         </div>
         {pInfo.image.includes("video") ? <video src = {pInfo.image} className="res-img" controls/> :<img src={pInfo.image} alt = "feed" className="res-img" />}

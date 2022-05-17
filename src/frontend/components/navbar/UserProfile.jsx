@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { postActions } from './../../../redux store/postSlice';
 
 const UserProfile = ({setProfileDisplay}) => {
-    const { userProfileData } = useSelector((store) => store.post)
+    const { userProfileData, theme } = useSelector((store) => store.post)
     const dispatch = useDispatch()
     const  navigate  = useNavigate()
     const logoutUser = () => {
@@ -16,10 +16,10 @@ const UserProfile = ({setProfileDisplay}) => {
       }
     let clickOutside = useClickOutside(setProfileDisplay)
   return (
-    <div className = "profile-card-wrapper" ref = {clickOutside}>
+    <div className = {`profile-card-wrapper ${theme}`} ref = {clickOutside}>
         <p>Hello <strong>{userProfileData.firstName}</strong></p>
         <Link to = "/myprofile">My Profile</Link>
-        <button className="btn outlined" onClick = {logoutUser}>Logout</button>
+        <button className="btn outlined-primary" onClick = {logoutUser}>Logout</button>
     </div>
   )
 };

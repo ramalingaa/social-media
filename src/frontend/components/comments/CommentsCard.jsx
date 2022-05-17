@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { postActions } from "../../../redux store/postSlice"
 const CommentsCard = ({comment, pInfo}) => {
     const [editComment, setEditComment] = useState(false)
-    const { jwtToken } = useSelector((store) => store.post)
+    const { jwtToken, theme } = useSelector((store) => store.post)
     const { postsData, usersData } = useSelector((store) => store.post)
     const dispatch = useDispatch()
     const commentOwner = usersData.find((user) => user.username === comment.username)
@@ -37,7 +37,7 @@ const CommentsCard = ({comment, pInfo}) => {
     <div className = "comment-card-wrapper">
         <div className = "user-details-wrapper">
             <img src = {commentOwner?.badge} alt = "profile badge" className="avatar avatar-micro"/>
-            {editComment ?<CommentPost pInfo = {pInfo} comment = {comment} setEditComment = {setEditComment}/> : <div className = "comment-text-wrapper">
+            {editComment ?<CommentPost pInfo = {pInfo} comment = {comment} setEditComment = {setEditComment}/> : <div className = {`comment-text-wrapper ${theme}`}>
                 <p className = "username">{commentOwner.username}</p>
                 <p>{comment.commentData}</p>
                 <div className = "comment-btn-wrapper">

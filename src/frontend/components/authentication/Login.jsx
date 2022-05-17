@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate, Link } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { postActions } from '../../../redux store/postSlice';
 
 const Login = () => {
@@ -10,6 +10,7 @@ const Login = () => {
     const [error, setError] = useState({emailNotFound:false,wrongCredentials:false, blankError: false, otherError:false})
     const [userData, setUserData] = useState({email:"", password:""})
     const navigate = useNavigate() 
+    const { theme } = useSelector((store) => store.post)
     const dispatch = useDispatch()
     const updateUserData = (e) => {
         const { name } = e.target
@@ -65,13 +66,13 @@ const Login = () => {
     }
 
   return (
-    <div className = "login-landing-wrapper">  
+    <div className = {`login-landing-wrapper ${theme}`}>  
         <div className = "login-title-wrapper">
             <h1 className = "login-logo-title">One Mile</h1>
             <p className = "title-subtext">One Mile  helps you connect and share with the people in your life.</p>
         </div>
         <div className = "login-page-wrapper">
-            <div className = "login-card-wrapper">
+            <div className = {`login-card-wrapper ${theme}`}>
                 <p className = "text-large login-header">Login</p>
                 <label className = "input-label">
                     <input type = "email" placeholder = " " name = "email"className = "i-text input-name login-input" onChange = {updateUserData}/>
@@ -92,7 +93,7 @@ const Login = () => {
                     <Link to = "/ForgotPassword" className = "login-forgotPassword">Forgot password ?</Link>
                 </div>
                 <button className = "btn primary" onClick = {loginUser}>Login</button>
-                <button className = "btn outlined" onClick = {loginGuest}>Login as a Guest</button>
+                <button className = "btn outlined-primary" onClick = {loginGuest}>Login as a Guest</button>
                 <Link to = "/signup"className = "login-header create-account">Create new Account</Link>
             </div>
         </div>

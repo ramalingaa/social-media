@@ -8,7 +8,7 @@ const UserPostCard = ({post}) => {
     const [displayEditPost, setDisplayEditPost] = useState(false)
     const [postOwner, setPostOwner] = useState({})
     const {  dispatch } = useDispatch()
-    const { usersData, jwtToken, userProfileData } = useSelector((store) => store.post)
+    const { usersData, jwtToken, userProfileData, theme } = useSelector((store) => store.post)
     
     const likeHandler = likeHandlerFunction(likedDisplay, post, jwtToken, dispatch)
     useEffect(() =>{
@@ -29,7 +29,7 @@ const UserPostCard = ({post}) => {
     }
 
   return (
-    <div className = "feedcard-wrapper">
+    <div className = {`feedcard-wrapper ${theme}`}>
         <div className = "postbtn-label-wrapper username-eclipse">
             <div className="user-details-wrapper">
                 <img src = {postOwner.badge} alt = "profile badge" className="avatar"/>

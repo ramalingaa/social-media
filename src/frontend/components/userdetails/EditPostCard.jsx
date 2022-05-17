@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { postActions } from './../../../redux store/postSlice';
 
 const EditPostCard = ({post, setDisplayEditPost}) => {
-const { jwtToken } = useSelector((store) => store.post)
+const { jwtToken, userProfileData, theme} = useSelector((store) => store.post)
 
 const  dispatch  = useDispatch()
 const [editForm, setEditForm] = useState(false)
@@ -24,12 +24,17 @@ const editPost = () => {
     setEditForm((prev) => !prev)
 }
 let clickOutside = useClickOutside(setDisplayEditPost)
-
+const archivePost = () => {
+    const newUserProfileData = {...userProfileData, archive:userProfileData.archive.concat(post)}
+    dispatch(postActions.getLoggedUserData(newUserProfileData))
+    setDisplayEditPost(() => false)
+}
   return (
     <div ref = {clickOutside}>
-        <div className = "editpost-wrapper">
+        <div className = {`editpost-wrapper ${theme}`}>
             <button className = "btn edit-btn" onClick = {editPost}>Edit Post</button>
             <button className = "btn edit-btn" onClick = {deletePost}>Delete Post</button>
+            <button className = "btn edit-btn" onClick = {archivePost}>Archive Post</button>
         </div>
         {editForm && 
         <div className = "edit-from-wrapper">

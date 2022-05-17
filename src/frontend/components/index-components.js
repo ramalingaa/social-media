@@ -28,4 +28,6 @@ import BookmarkCard from './bookmark/BookmarkCard';
 import Comments from "./comments/Comments"
 import CommentsCard from './comments/CommentsCard'
 import CommentPost from "./comments/CommentPost"
-export { ForgotPassword, Login, Signup, UserProfile, Navbar, Home, FeedCard, UploadPost, UserProfileCard, UserOwnPosts, UserPostCard, EditPostCard, UserProfilePage, ProfileCarHor, UserPostCardData, Followers, FollowerCard, Following, FollowingCard, PostProfilePage, PostProfileCard, UpdateProfileImage, UpdateBgImage, UpdateBio, UpdatePortFolio, BookmarkPage, BookmarkCard, Comments, CommentsCard, CommentPost}
+import DraftUploadPost from './Toast/DraftUploadPost';
+import PostUploadToast from './Toast/PostUploadToast';
+export { ForgotPassword, Login, Signup, UserProfile, Navbar, Home, FeedCard, UploadPost, UserProfileCard, UserOwnPosts, UserPostCard, EditPostCard, UserProfilePage, ProfileCarHor, UserPostCardData, Followers, FollowerCard, Following, FollowingCard, PostProfilePage, PostProfileCard, UpdateProfileImage, UpdateBgImage, UpdateBio, UpdatePortFolio, BookmarkPage, BookmarkCard, Comments, CommentsCard, CommentPost, DraftUploadPost, PostUploadToast}
