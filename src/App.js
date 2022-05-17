@@ -5,10 +5,10 @@ import MockAPI from "./MockAPI"
 import { useSelector } from 'react-redux';
 
 function App() {
-  const { jwtToken } = useSelector((store) => store.post)
+  const { jwtToken, theme } = useSelector((store) => store.post)
 
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
       { jwtToken && <Navbar />}
       <Routes>
         <Route path = "/" element = {jwtToken ? <Home /> : <Navigate to = "/login"/>} />

@@ -6,6 +6,7 @@ export function getPosts(dispatch) {
         try {
             const response = await axios.get("/api/posts");
             dispatch(postActions.getPostsData(response.data.posts));
+            dispatch(postActions.getInitialData(response.data.posts));
         }
         catch (e) {
             console.log(e);

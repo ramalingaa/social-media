@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { FeedCard, UploadPost, UserProfileCard } from "../index-components"
+import { FeedCard, UploadPost, UserProfileCard, PostUploadToast, DraftUploadPost } from "../index-components"
 import { useSelector } from "react-redux"
 const Home = () => {
   
   const { postsData, userProfileData } = useSelector((store) => store.post)
   const [userFeed, setUserFeed] = useState([])
+  const [ postUploadToast, setPostUploadToast ] = useState({ post: false, draft: false })
+
   useEffect(() => {
     const postsRenderData = postsData.filter((post) => post.userName !== userProfileData.firstName + userProfileData.lastName)
     setUserFeed(() => postsRenderData)
   },[postsData])
+  useEffect(() =>{
+    if(postUploadToast.post){
+      setTimeout(() => setPostUploadToast((prev) => ({...prev, post:!prev.post})), 3000)
+    }
+  },[postUploadToast.post])
+  useEffect(() =>{
+    if(postUploadToast.draft){
+      setTimeout(() => setPostUploadToast((prev) => ({...prev, draft:!prev.draft})), 3000)
+    }
+  },[postUploadToast.draft])
   const sortHandler = (e) => {
     if(e.target.value === "Old"){
       const newFeedData = JSON.parse(JSON.stringify(userFeed)).sort((firstEl, secondEl) => {
@@ -36,7 +48,7 @@ const Home = () => {
           <UserProfileCard />
       </div>
       <div>
-        <UploadPost />
+        <UploadPost setPostUploadToast = {setPostUploadToast}/>
         <div className = "sort-wrapper">
           <div className = "hr-align">
             <hr />
@@ -55,8 +67,10 @@ const Home = () => {
         })}
       </div>
       <div>
-        
+        { postUploadToast.post && <PostUploadToast text = "uploaded"/>}
+        { postUploadToast.draft && <DraftUploadPost text = "saved"/>}
       </div>
+      
     </div>
   )
 }

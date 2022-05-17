@@ -12,7 +12,6 @@ const UserPostCardData = () => {
         useeSpecificData.reverse()
         setUserPosts(() => useeSpecificData)
     },[postsData])
-    console.log(userPosts)
   return (
     <div className = "userpost-cards-wrapper">
          {userPosts.map((post) =>{
