@@ -109,7 +109,7 @@ const FeedCard = ({ pInfo}) => {
                 <p className = "username">{pInfo.userName}</p>
             </Link>
             <div>
-                <button className = {`btn btn-text ${followDisplay && "selected"}`} onClick = {followHandler}>{followDisplay ? "Following" : "+ Follow"}</button>
+                <button className = {`btn btn-text theme-btn ${followDisplay && "selected"}`} onClick = {followHandler}>{followDisplay ? "Following" : "+ Follow"}</button>
             </div>
         </div>
         {pInfo.image.includes("video") ? <video src = {pInfo.image} className="res-img" controls/> :<img src={pInfo.image} alt = "feed" className="res-img" />}

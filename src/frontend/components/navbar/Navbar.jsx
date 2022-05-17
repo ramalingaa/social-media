@@ -46,7 +46,7 @@ const Navbar = () => {
         <input type = "text" className="i-text navbar-search" onChange = {debounceChangeHandler} placeholder = "Search posts by username"/>
         <i className="fa-solid fa-magnifying-glass search-icon"></i>
         <i className="far fa-user nav-icon" onClick = {toggleProfileCard}></i>
-        <button onClick = {toggleTheme} className = "btn btn-text"><i className="fa-solid fa-circle-half-stroke"></i></button>
+        <button onClick = {toggleTheme} className = "btn btn-text theme-btn"><i className="fa-solid fa-circle-half-stroke"></i></button>
       </div>
       }
       

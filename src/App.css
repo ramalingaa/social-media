@@ -642,3 +642,6 @@ label {
 .dark .selected {
   color:var(--app-color-main);
 }
+.dark .btn:hover {
+  background-color: transparent;
+}
